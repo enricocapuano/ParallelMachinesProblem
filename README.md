@@ -1,2 +1,2 @@
-# ParallelMachinesProblem
-Problem szeregowania zadań na wielu procesorach
+# Problem szeregowania zadań na wielu procesorach
+---
