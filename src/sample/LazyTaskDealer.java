@@ -1,18 +1,18 @@
 package sample;
 
 import java.util.ArrayList;
-import java.util.Random;
+import java.util.concurrent.Callable;
 
 /**
  * Created by Rafał on 05.06.2017.
  */
-class Knapsack {
+class LazyTaskDealer implements Callable<Processor> {
 
-    private int taskCount;
     private ArrayList<ProcessorTask> tasks;
+    private int desiredExecutionTime;
+    private long id;
 
-    public Knapsack(ArrayList<ProcessorTask> tasks) {
-        this.taskCount = tasks.size();
+    public LazyTaskDealer(ArrayList<ProcessorTask> tasks) {
         this.tasks = tasks;
     }
 
@@ -106,4 +106,19 @@ class Knapsack {
         this.tasks = tasks;
     }
 
+    public void setDesiredExecutionTime(int desiredExecutionTime) {
+        this.desiredExecutionTime = desiredExecutionTime;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    @Override
+    public Processor call() throws Exception {
+        Processor proc = dealTasks(desiredExecutionTime);
+        long end = System.currentTimeMillis();
+        System.out.println("id: " + id + " tasks: " + tasks.size() + " finished in: " + end + " duration: " + (end - id));
+        return proc;
+    }
 }
