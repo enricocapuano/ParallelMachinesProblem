@@ -6,7 +6,7 @@ import java.util.concurrent.Callable;
 /**
  * Created by Rafał on 05.06.2017.
  */
-class LazyTaskDealer implements Callable<Processor> {
+class LazyTaskDealer implements Callable<TaskDealerProduct> {
 
     private ArrayList<ProcessorTask> tasks;
     private int desiredExecutionTime;
@@ -115,10 +115,9 @@ class LazyTaskDealer implements Callable<Processor> {
     }
 
     @Override
-    public Processor call() throws Exception {
+    public TaskDealerProduct call() throws Exception {
         Processor proc = dealTasks(desiredExecutionTime);
         long end = System.currentTimeMillis();
-        System.out.println("id: " + id + " tasks: " + tasks.size() + " finished in: " + end + " duration: " + (end - id));
-        return proc;
+        return new TaskDealerProduct(proc, tasks, (end-id));
     }
 }

@@ -3,7 +3,7 @@ package sample;
 /**
  * Created by Rafał on 05.06.2017.
  */
-public class ProcessorTask {
+public class ProcessorTask implements Comparable {
 
     public enum TaskPriority {
         HIGH, LOW;
@@ -15,6 +15,17 @@ public class ProcessorTask {
     public ProcessorTask(int executionTime, TaskPriority priority) {
         this.executionTime = executionTime;
         this.priority = priority;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        if(o != null) {
+            ProcessorTask p = (ProcessorTask) o;
+            if(p.getExecutionTime() > executionTime) return -1;
+            else if(p.getExecutionTime() == executionTime) return 0;
+            else return 1;
+        }
+        return -1;
     }
 
     public int getExecutionTime() {
