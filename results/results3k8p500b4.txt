@@ -1,0 +1,21 @@
+Total execution time: 755796
+Desired exec time: 94475
+	proc 1: 94475
+	proc 2: 94475
+	proc 3: 94475
+	proc 4: 94475
+	proc 5: 94475
+	proc 6: 94475
+	proc 7: 94475
+	proc 8: 94471
+SINGLE THREAD DEAL TIME:	8,928000s.
+	proc 1: 94475
+	proc 2: 94475
+	proc 3: 94475
+	proc 4: 94474
+	proc 5: 94475
+	proc 6: 94475
+	proc 7: 94475
+	proc 8: 94472
+LeftTasks: 	 = 0
+PARALLEL DEALER TIME:	0,811000s.

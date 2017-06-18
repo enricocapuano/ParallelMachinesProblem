@@ -1,5 +1,7 @@
 package sample;
 
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -14,8 +16,8 @@ public class Main {
     private static int execTime;
 
 
-    private static final int PROCESSORS_COUNT = 4;
-    private static final int TASK_POOL_SIZE = 3000;
+    private static final int PROCESSORS_COUNT = 8;
+    private static final int TASK_POOL_SIZE = 100;
     private static final int BOUND = 500;
 
     private static long doLazyDealer() {
@@ -73,8 +75,8 @@ public class Main {
         showDealerResult(processors);
         showLeftTasks(leftTasks);
 
-        System.out.println("PROCESSOR DEAL TIME: " + Collections.max(times));
-        System.out.println("LEFT TASK DEAL TIME: " + time);
+//        System.out.println("PROCESSOR DEAL TIME: " + Collections.max(times));
+//        System.out.println("LEFT TASK DEAL TIME: " + time);
 
         return Collections.max(times) + time;
     }
@@ -118,7 +120,12 @@ public class Main {
         });
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
+        PrintStream toFile = new PrintStream("results01k8p500b.txt");
+        PrintStream orig = System.out;
+
+        System.setOut(toFile);
+
         initTasks(t, t2);
 
         System.out.format("SINGLE THREAD DEAL TIME:\t%fs.\n", doLazyDealer()/1000.0);
@@ -127,7 +134,8 @@ public class Main {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        //System.exit(1);
+
+        System.setOut(orig);
     }
 
     private static void initTasks(ArrayList<ProcessorTask> t, ArrayList<ProcessorTask> t2) {

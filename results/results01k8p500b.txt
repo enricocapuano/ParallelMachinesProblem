@@ -1,0 +1,11 @@
+Total execution time: 24489
+Desired exec time: 3062
+	proc 1: 3062
+	proc 2: 3062
+	proc 3: 3062
+	proc 4: 3062
+	proc 5: 3062
+	proc 6: 3062
+	proc 7: 3062
+	proc 8: 3055
+SINGLE THREAD DEAL TIME:	0,073000s.
